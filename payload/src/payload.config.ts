@@ -15,6 +15,7 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Products } from './collections/Products'
+import { Serials } from './collections/Serials'
 import { Users } from './collections/Users'
 
 const filename = fileURLToPath(import.meta.url)
@@ -30,7 +31,18 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Posts, Brands, Categories, Contacts, Footers, Pages, Products],
+  collections: [
+    Users,
+    Media,
+    Posts,
+    Brands,
+    Categories,
+    Contacts,
+    Footers,
+    Pages,
+    Products,
+    Serials,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

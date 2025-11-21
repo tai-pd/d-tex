@@ -137,7 +137,7 @@ export interface User {
   id: number;
   name: string;
   /**
-   * Admin: full access. Editor: can manage data but cannot manage users.
+   * Quản trị viên: toàn quyền. Biên tập viên: quản lý nội dung nhưng không quản lý người dùng.
    */
   role?: ('admin' | 'editor') | null;
   updatedAt: string;
@@ -187,15 +187,15 @@ export interface Post {
   title: string;
   slug: string;
   /**
-   * Short description for post preview
+   * Mô tả ngắn hiển thị trong danh sách bài viết
    */
   excerpt?: string | null;
   /**
-   * Main image displayed at the top of the post
+   * Ảnh chính hiển thị ở đầu bài viết
    */
   featuredImage?: (number | null) | Media;
   /**
-   * Main content with text and images
+   * Nội dung chính với văn bản và hình ảnh
    */
   content: {
     root: {
@@ -220,7 +220,7 @@ export interface Post {
       }[]
     | null;
   /**
-   * Published posts are visible to the public
+   * Bài viết đã xuất bản sẽ hiển thị công khai
    */
   published?: boolean | null;
   publishedAt?: string | null;
@@ -256,7 +256,7 @@ export interface Category {
   slug: string;
   description?: string | null;
   /**
-   * Parent category (optional)
+   * Dòng sản phẩm cha (không bắt buộc)
    */
   parent?: (number | null) | Category;
   order?: number | null;
@@ -324,7 +324,7 @@ export interface Product {
       }[]
     | null;
   /**
-   * Product images (use R2 upload)
+   * Hình ảnh sản phẩm (sử dụng R2 upload)
    */
   images?: (number | Media)[] | null;
   catalog?: (number | null) | Media;
@@ -341,7 +341,7 @@ export interface Product {
   createdAt: string;
 }
 /**
- * Manage footer content and configuration
+ * Quản lý nội dung và cấu hình footer
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "footers".
@@ -349,20 +349,20 @@ export interface Product {
 export interface Footer {
   id: number;
   /**
-   * Internal name for this footer configuration
+   * Tên nội bộ cho cấu hình footer này
    */
   name: string;
   /**
-   * Add benefits/features to display in footer (e.g., "Bán hàng chính hãng", "Giao hàng tận nơi")
+   * Thêm lợi ích/tính năng hiển thị trong footer (VD: "Bán hàng chính hãng", "Giao hàng tận nơi")
    */
   benefits?:
     | {
         /**
-         * Icon for this benefit
+         * Icon cho lợi ích này
          */
         icon?: (number | null) | Media;
         /**
-         * Benefit text (e.g., "BÁN HÀNG CHÍNH HÃNG - GIAO HÀNG TẬN NƠI - TƯ VẤN MIỄN PHÍ")
+         * Văn bản lợi ích (VD: "BÁN HÀNG CHÍNH HÃNG - GIAO HÀNG TẬN NƠI - TƯ VẤN MIỄN PHÍ")
          */
         text: string;
         id?: string | null;
@@ -371,67 +371,67 @@ export interface Footer {
   columns?: {
     addressColumn?: {
       /**
-       * Column heading
+       * Tiêu đề cột
        */
       heading?: string | null;
       /**
-       * Company name (e.g., "Công ty Cổ phần Kỹ thuật Dtech")
+       * Tên công ty (VD: "Công ty Cổ phần Kỹ thuật Dtech")
        */
       companyName?: string | null;
       /**
-       * Full address
+       * Địa chỉ đầy đủ
        */
       address?: string | null;
       /**
-       * Google Maps embed URL (optional)
+       * URL nhúng Google Maps (không bắt buộc)
        */
       mapUrl?: string | null;
     };
     contactColumn?: {
       /**
-       * Column heading
+       * Tiêu đề cột
        */
       heading?: string | null;
       /**
-       * List of contact people
+       * Danh sách người liên hệ
        */
       contacts?:
         | {
             /**
-             * Contact name (e.g., "Ms. Trang", "Mr. Hùng")
+             * Tên người liên hệ (VD: "Ms. Trang", "Mr. Hùng")
              */
             name: string;
             /**
-             * Phone number
+             * Số điện thoại
              */
             phone?: string | null;
             /**
-             * Zalo number (if different from phone)
+             * Số Zalo (nếu khác số điện thoại)
              */
             zalo?: string | null;
             /**
-             * Email address
+             * Địa chỉ email
              */
             email?: string | null;
             id?: string | null;
           }[]
         | null;
       /**
-       * General hotline/phone number
+       * Số hotline/điện thoại chung
        */
       generalPhone?: string | null;
       /**
-       * General email address
+       * Địa chỉ email chung
        */
       generalEmail?: string | null;
     };
     servicesColumn?: {
       /**
-       * Column heading
+       * Tiêu đề cột
        */
       heading?: string | null;
       /**
-       * Services description or list
+       * Mô tả dịch vụ hoặc danh sách
        */
       content?: {
         root: {
@@ -449,7 +449,7 @@ export interface Footer {
         [k: string]: unknown;
       } | null;
       /**
-       * Add quick links to services or pages
+       * Thêm liên kết nhanh đến dịch vụ hoặc trang
        */
       links?:
         | {
@@ -462,11 +462,11 @@ export interface Footer {
   };
   bottomContent?: {
     /**
-     * Copyright text
+     * Văn bản bản quyền
      */
     copyrightText?: string | null;
     /**
-     * Links for privacy policy, terms, etc.
+     * Liên kết cho chính sách bảo mật, điều khoản, v.v.
      */
     additionalLinks?:
       | {
@@ -478,24 +478,24 @@ export interface Footer {
   };
   socialMedia?: {
     /**
-     * Facebook page URL
+     * URL trang Facebook
      */
     facebook?: string | null;
     /**
-     * Zalo URL
+     * URL Zalo
      */
     zalo?: string | null;
     /**
-     * YouTube channel URL
+     * URL kênh YouTube
      */
     youtube?: string | null;
     /**
-     * LinkedIn URL
+     * URL LinkedIn
      */
     linkedin?: string | null;
   };
   /**
-   * Set this footer as active
+   * Đặt footer này là đang hoạt động
    */
   isActive?: boolean | null;
   updatedAt: string;
@@ -510,71 +510,71 @@ export interface Page {
   title: string;
   slug: string;
   /**
-   * Choose the layout template for this page
+   * Chọn mẫu bố cục cho trang này
    */
   layout: 'home' | 'about' | 'contact' | 'standard';
   seo?: {
     /**
-     * SEO title (max 60 characters). Leave empty to use page title.
+     * Tiêu đề SEO (tối đa 60 ký tự). Để trống để sử dụng tiêu đề trang.
      */
     metaTitle?: string | null;
     /**
-     * SEO description for search engines (max 160 characters)
+     * Mô tả SEO cho công cụ tìm kiếm (tối đa 160 ký tự)
      */
     metaDescription?: string | null;
     /**
-     * SEO keywords, separated by commas
+     * Từ khóa SEO, phân cách bằng dấu phẩy
      */
     metaKeywords?: string | null;
     /**
-     * Image for social media sharing (Open Graph)
+     * Ảnh chia sẻ mạng xã hội (Open Graph)
      */
     ogImage?: (number | null) | Media;
     /**
-     * Social media title. Leave empty to use page title.
+     * Tiêu đề mạng xã hội. Để trống để sử dụng tiêu đề trang.
      */
     ogTitle?: string | null;
     /**
-     * Social media description. Leave empty to use meta description.
+     * Mô tả mạng xã hội. Để trống để sử dụng mô tả SEO.
      */
     ogDescription?: string | null;
   };
   hero?: {
     /**
-     * Display hero section on this page
+     * Hiển thị phần hero trên trang này
      */
     showHero?: boolean | null;
     /**
-     * Main heading in hero section
+     * Tiêu đề chính trong phần hero
      */
     title?: string | null;
     /**
-     * Subheading in hero section
+     * Tiêu đề phụ trong phần hero
      */
     subtitle?: string | null;
     /**
-     * Hero description text
+     * Văn bản mô tả hero
      */
     description?: string | null;
     /**
-     * Hero background image
+     * Ảnh nền hero
      */
     image?: (number | null) | Media;
     /**
-     * Call-to-action button text
+     * Văn bản nút kêu gọi hành động
      */
     buttonText?: string | null;
     /**
-     * Call-to-action button URL
+     * URL nút kêu gọi hành động
      */
     buttonLink?: string | null;
   };
   /**
-   * Select categories to display on this page
+   * Chọn dòng sản phẩm để hiển thị trên trang này
    */
   featuredCategories?: (number | Category)[] | null;
   /**
-   * Main content (rich text)
+   * Nội dung chính (văn bản định dạng)
    */
   content?: {
     root: {
@@ -592,7 +592,7 @@ export interface Page {
     [k: string]: unknown;
   } | null;
   /**
-   * Add dynamic content sections to this page
+   * Thêm các phần nội dung động vào trang này
    */
   sections?:
     | (
@@ -633,7 +633,7 @@ export interface Page {
         | {
             heading?: string | null;
             /**
-             * YouTube or Vimeo URL
+             * URL YouTube hoặc Vimeo
              */
             videoUrl: string;
             description?: string | null;
@@ -655,7 +655,7 @@ export interface Page {
             heading: string;
             description?: string | null;
             /**
-             * Select products to display
+             * Chọn sản phẩm để hiển thị
              */
             products?: (number | Product)[] | null;
             displayStyle?: ('grid' | 'carousel' | 'list') | null;
@@ -665,11 +665,11 @@ export interface Page {
           }
         | {
             /**
-             * Internal label for this block
+             * Nhãn nội bộ cho khối này
              */
             label: string;
             /**
-             * Custom HTML code
+             * Mã HTML tùy chỉnh
              */
             html: string;
             id?: string | null;

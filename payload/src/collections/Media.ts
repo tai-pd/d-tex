@@ -25,8 +25,8 @@ export const Media: CollectionConfig = {
   },
 
   fields: [
-    { name: 'alt', type: 'text' },
-    { name: 'caption', type: 'text' },
+    { name: 'alt', type: 'text', label: 'Văn bản thay thế (Alt)' },
+    { name: 'caption', type: 'text', label: 'Chú thích' },
   ],
 
   timestamps: true,

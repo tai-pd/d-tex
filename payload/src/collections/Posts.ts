@@ -22,29 +22,32 @@ export const Posts: CollectionConfig = {
     delete: ({ req }) => req.user?.role === 'admin',
   },
   fields: [
-    { name: 'title', type: 'text', required: true },
-    { name: 'slug', type: 'text', required: true, unique: true },
+    { name: 'title', type: 'text', required: true, label: 'Tiêu đề' },
+    { name: 'slug', type: 'text', required: true, unique: true, label: 'Đường dẫn' },
     {
       name: 'excerpt',
       type: 'textarea',
+      label: 'Trích dẫn',
       admin: {
-        description: 'Short description for post preview',
+        description: 'Mô tả ngắn hiển thị trong danh sách bài viết',
       },
     },
     {
       name: 'featuredImage',
       type: 'upload',
       relationTo: 'media',
+      label: 'Ảnh đại diện',
       admin: {
-        description: 'Main image displayed at the top of the post',
+        description: 'Ảnh chính hiển thị ở đầu bài viết',
       },
     },
     {
       name: 'content',
       type: 'richText',
       required: true,
+      label: 'Nội dung',
       admin: {
-        description: 'Main content with text and images',
+        description: 'Nội dung chính với văn bản và hình ảnh',
       },
       editor: lexicalEditor(),
     },
@@ -53,6 +56,7 @@ export const Posts: CollectionConfig = {
       type: 'relationship',
       relationTo: 'users',
       required: true,
+      label: 'Tác giả',
       admin: {
         position: 'sidebar',
       },
@@ -60,23 +64,26 @@ export const Posts: CollectionConfig = {
     {
       name: 'tags',
       type: 'array',
+      label: 'Thẻ',
       admin: {
         position: 'sidebar',
       },
-      fields: [{ name: 'tag', type: 'text' }],
+      fields: [{ name: 'tag', type: 'text', label: 'Tên thẻ' }],
     },
     {
       name: 'published',
       type: 'checkbox',
       defaultValue: false,
+      label: 'Đã xuất bản',
       admin: {
         position: 'sidebar',
-        description: 'Published posts are visible to the public',
+        description: 'Bài viết đã xuất bản sẽ hiển thị công khai',
       },
     },
     {
       name: 'publishedAt',
       type: 'date',
+      label: 'Ngày xuất bản',
       admin: {
         position: 'sidebar',
       },
@@ -84,12 +91,13 @@ export const Posts: CollectionConfig = {
     {
       name: 'metadata',
       type: 'group',
+      label: 'Metadata SEO',
       admin: {
         position: 'sidebar',
       },
       fields: [
-        { name: 'metaTitle', type: 'text' },
-        { name: 'metaDescription', type: 'textarea' },
+        { name: 'metaTitle', type: 'text', label: 'Tiêu đề SEO' },
+        { name: 'metaDescription', type: 'textarea', label: 'Mô tả SEO' },
       ],
     },
   ],

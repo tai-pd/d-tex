@@ -9,7 +9,7 @@ export const Footers: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    description: 'Manage footer content and configuration',
+    description: 'Quản lý nội dung và cấu hình footer',
   },
   // Use singleton pattern - only one footer configuration
   access: {
@@ -24,8 +24,9 @@ export const Footers: CollectionConfig = {
       type: 'text',
       required: true,
       defaultValue: 'Main Footer',
+      label: 'Tên',
       admin: {
-        description: 'Internal name for this footer configuration',
+        description: 'Tên nội bộ cho cấu hình footer này',
       },
     },
 
@@ -33,27 +34,29 @@ export const Footers: CollectionConfig = {
     {
       name: 'benefits',
       type: 'array',
-      label: 'Benefits & Features',
+      label: 'Lợi ích & Tính năng',
       admin: {
         description:
-          'Add benefits/features to display in footer (e.g., "Bán hàng chính hãng", "Giao hàng tận nơi")',
+          'Thêm lợi ích/tính năng hiển thị trong footer (VD: "Bán hàng chính hãng", "Giao hàng tận nơi")',
       },
       fields: [
         {
           name: 'icon',
           type: 'upload',
           relationTo: 'media',
+          label: 'Icon',
           admin: {
-            description: 'Icon for this benefit',
+            description: 'Icon cho lợi ích này',
           },
         },
         {
           name: 'text',
           type: 'text',
           required: true,
+          label: 'Văn bản',
           admin: {
             description:
-              'Benefit text (e.g., "BÁN HÀNG CHÍNH HÃNG - GIAO HÀNG TẬN NƠI - TƯ VẤN MIỄN PHÍ")',
+              'Văn bản lợi ích (VD: "BÁN HÀNG CHÍNH HÃNG - GIAO HÀNG TẬN NƠI - TƯ VẤN MIỄN PHÍ")',
           },
         },
       ],
@@ -63,41 +66,45 @@ export const Footers: CollectionConfig = {
     {
       name: 'columns',
       type: 'group',
-      label: 'Footer Columns',
+      label: 'Các cột Footer',
       fields: [
         // Column 1: Address
         {
           name: 'addressColumn',
           type: 'group',
-          label: 'Địa chỉ (Address)',
+          label: 'Cột địa chỉ',
           fields: [
             {
               name: 'heading',
               type: 'text',
               defaultValue: 'Địa chỉ',
+              label: 'Tiêu đề',
               admin: {
-                description: 'Column heading',
+                description: 'Tiêu đề cột',
               },
             },
             {
               name: 'companyName',
               type: 'text',
+              label: 'Tên công ty',
               admin: {
-                description: 'Company name (e.g., "Công ty Cổ phần Kỹ thuật Dtech")',
+                description: 'Tên công ty (VD: "Công ty Cổ phần Kỹ thuật Dtech")',
               },
             },
             {
               name: 'address',
               type: 'textarea',
+              label: 'Địa chỉ',
               admin: {
-                description: 'Full address',
+                description: 'Địa chỉ đầy đủ',
               },
             },
             {
               name: 'mapUrl',
               type: 'text',
+              label: 'URL bản đồ',
               admin: {
-                description: 'Google Maps embed URL (optional)',
+                description: 'URL nhúng Google Maps (không bắt buộc)',
               },
             },
           ],
@@ -107,51 +114,56 @@ export const Footers: CollectionConfig = {
         {
           name: 'contactColumn',
           type: 'group',
-          label: 'Thông tin liên hệ (Contact Info)',
+          label: 'Cột thông tin liên hệ',
           fields: [
             {
               name: 'heading',
               type: 'text',
               defaultValue: 'Thông tin liên hệ',
+              label: 'Tiêu đề',
               admin: {
-                description: 'Column heading',
+                description: 'Tiêu đề cột',
               },
             },
             {
               name: 'contacts',
               type: 'array',
-              label: 'Contact People',
+              label: 'Người liên hệ',
               admin: {
-                description: 'List of contact people',
+                description: 'Danh sách người liên hệ',
               },
               fields: [
                 {
                   name: 'name',
                   type: 'text',
                   required: true,
+                  label: 'Tên',
                   admin: {
-                    description: 'Contact name (e.g., "Ms. Trang", "Mr. Hùng")',
+                    description: 'Tên người liên hệ (VD: "Ms. Trang", "Mr. Hùng")',
                   },
                 },
                 {
                   name: 'phone',
                   type: 'text',
+                  label: 'Số điện thoại',
                   admin: {
-                    description: 'Phone number',
+                    description: 'Số điện thoại',
                   },
                 },
                 {
                   name: 'zalo',
                   type: 'text',
+                  label: 'Zalo',
                   admin: {
-                    description: 'Zalo number (if different from phone)',
+                    description: 'Số Zalo (nếu khác số điện thoại)',
                   },
                 },
                 {
                   name: 'email',
                   type: 'email',
+                  label: 'Email',
                   admin: {
-                    description: 'Email address',
+                    description: 'Địa chỉ email',
                   },
                 },
               ],
@@ -159,15 +171,17 @@ export const Footers: CollectionConfig = {
             {
               name: 'generalPhone',
               type: 'text',
+              label: 'Hotline chung',
               admin: {
-                description: 'General hotline/phone number',
+                description: 'Số hotline/điện thoại chung',
               },
             },
             {
               name: 'generalEmail',
               type: 'email',
+              label: 'Email chung',
               admin: {
-                description: 'General email address',
+                description: 'Địa chỉ email chung',
               },
             },
           ],
@@ -177,41 +191,45 @@ export const Footers: CollectionConfig = {
         {
           name: 'servicesColumn',
           type: 'group',
-          label: 'Thông tin thiết kế thi công (Services Info)',
+          label: 'Cột dịch vụ',
           fields: [
             {
               name: 'heading',
               type: 'text',
               defaultValue: 'Thiết kế và Lắp đặt Tủ điện',
+              label: 'Tiêu đề',
               admin: {
-                description: 'Column heading',
+                description: 'Tiêu đề cột',
               },
             },
             {
               name: 'content',
               type: 'richText',
+              label: 'Nội dung',
               admin: {
-                description: 'Services description or list',
+                description: 'Mô tả dịch vụ hoặc danh sách',
               },
               editor: lexicalEditor(),
             },
             {
               name: 'links',
               type: 'array',
-              label: 'Quick Links',
+              label: 'Liên kết nhanh',
               admin: {
-                description: 'Add quick links to services or pages',
+                description: 'Thêm liên kết nhanh đến dịch vụ hoặc trang',
               },
               fields: [
                 {
                   name: 'text',
                   type: 'text',
                   required: true,
+                  label: 'Văn bản',
                 },
                 {
                   name: 'url',
                   type: 'text',
                   required: true,
+                  label: 'URL',
                 },
               ],
             },
@@ -224,26 +242,27 @@ export const Footers: CollectionConfig = {
     {
       name: 'bottomContent',
       type: 'group',
-      label: 'Bottom Content',
+      label: 'Nội dung cuối',
       fields: [
         {
           name: 'copyrightText',
           type: 'text',
           defaultValue: '© 2024 Dtech. All rights reserved.',
+          label: 'Văn bản bản quyền',
           admin: {
-            description: 'Copyright text',
+            description: 'Văn bản bản quyền',
           },
         },
         {
           name: 'additionalLinks',
           type: 'array',
-          label: 'Additional Links',
+          label: 'Liên kết bổ sung',
           admin: {
-            description: 'Links for privacy policy, terms, etc.',
+            description: 'Liên kết cho chính sách bảo mật, điều khoản, v.v.',
           },
           fields: [
-            { name: 'text', type: 'text', required: true },
-            { name: 'url', type: 'text', required: true },
+            { name: 'text', type: 'text', required: true, label: 'Văn bản' },
+            { name: 'url', type: 'text', required: true, label: 'URL' },
           ],
         },
       ],
@@ -253,34 +272,38 @@ export const Footers: CollectionConfig = {
     {
       name: 'socialMedia',
       type: 'group',
-      label: 'Social Media',
+      label: 'Mạng xã hội',
       fields: [
         {
           name: 'facebook',
           type: 'text',
+          label: 'Facebook',
           admin: {
-            description: 'Facebook page URL',
+            description: 'URL trang Facebook',
           },
         },
         {
           name: 'zalo',
           type: 'text',
+          label: 'Zalo',
           admin: {
-            description: 'Zalo URL',
+            description: 'URL Zalo',
           },
         },
         {
           name: 'youtube',
           type: 'text',
+          label: 'YouTube',
           admin: {
-            description: 'YouTube channel URL',
+            description: 'URL kênh YouTube',
           },
         },
         {
           name: 'linkedin',
           type: 'text',
+          label: 'LinkedIn',
           admin: {
-            description: 'LinkedIn URL',
+            description: 'URL LinkedIn',
           },
         },
       ],
@@ -291,8 +314,9 @@ export const Footers: CollectionConfig = {
       name: 'isActive',
       type: 'checkbox',
       defaultValue: true,
+      label: 'Đang hoạt động',
       admin: {
-        description: 'Set this footer as active',
+        description: 'Đặt footer này là đang hoạt động',
       },
     },
   ],

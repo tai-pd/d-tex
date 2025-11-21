@@ -19,8 +19,8 @@ export const Pages: CollectionConfig = {
   },
   fields: [
     // Basic Information
-    { name: 'title', type: 'text', required: true },
-    { name: 'slug', type: 'text', required: true, unique: true },
+    { name: 'title', type: 'text', required: true, label: 'Tiêu đề trang' },
+    { name: 'slug', type: 'text', required: true, unique: true, label: 'Đường dẫn' },
 
     // Layout Options
     {
@@ -28,14 +28,15 @@ export const Pages: CollectionConfig = {
       type: 'select',
       required: true,
       defaultValue: 'standard',
+      label: 'Bố cục',
       options: [
-        { label: 'Homepage', value: 'home' },
-        { label: 'About', value: 'about' },
-        { label: 'Contact', value: 'contact' },
-        { label: 'Standard Page', value: 'standard' },
+        { label: 'Trang chủ', value: 'home' },
+        { label: 'Giới thiệu', value: 'about' },
+        { label: 'Liên hệ', value: 'contact' },
+        { label: 'Trang tiêu chuẩn', value: 'standard' },
       ],
       admin: {
-        description: 'Choose the layout template for this page',
+        description: 'Chọn mẫu bố cục cho trang này',
       },
     },
 
@@ -43,51 +44,57 @@ export const Pages: CollectionConfig = {
     {
       name: 'seo',
       type: 'group',
-      label: 'SEO Metadata',
+      label: 'Metadata SEO',
       fields: [
         {
           name: 'metaTitle',
           type: 'text',
           maxLength: 60,
+          label: 'Tiêu đề SEO',
           admin: {
-            description: 'SEO title (max 60 characters). Leave empty to use page title.',
+            description: 'Tiêu đề SEO (tối đa 60 ký tự). Để trống để sử dụng tiêu đề trang.',
           },
         },
         {
           name: 'metaDescription',
           type: 'textarea',
           maxLength: 160,
+          label: 'Mô tả SEO',
           admin: {
-            description: 'SEO description for search engines (max 160 characters)',
+            description: 'Mô tả SEO cho công cụ tìm kiếm (tối đa 160 ký tự)',
           },
         },
         {
           name: 'metaKeywords',
           type: 'text',
+          label: 'Từ khóa SEO',
           admin: {
-            description: 'SEO keywords, separated by commas',
+            description: 'Từ khóa SEO, phân cách bằng dấu phẩy',
           },
         },
         {
           name: 'ogImage',
           type: 'upload',
           relationTo: 'media',
+          label: 'Ảnh OG',
           admin: {
-            description: 'Image for social media sharing (Open Graph)',
+            description: 'Ảnh chia sẻ mạng xã hội (Open Graph)',
           },
         },
         {
           name: 'ogTitle',
           type: 'text',
+          label: 'Tiêu đề mạng xã hội',
           admin: {
-            description: 'Social media title. Leave empty to use page title.',
+            description: 'Tiêu đề mạng xã hội. Để trống để sử dụng tiêu đề trang.',
           },
         },
         {
           name: 'ogDescription',
           type: 'textarea',
+          label: 'Mô tả mạng xã hội',
           admin: {
-            description: 'Social media description. Leave empty to use meta description.',
+            description: 'Mô tả mạng xã hội. Để trống để sử dụng mô tả SEO.',
           },
         },
       ],
@@ -97,37 +104,41 @@ export const Pages: CollectionConfig = {
     {
       name: 'hero',
       type: 'group',
-      label: 'Hero Section',
+      label: 'Phần Hero',
       fields: [
         {
           name: 'showHero',
           type: 'checkbox',
           defaultValue: true,
+          label: 'Hiển thị Hero',
           admin: {
-            description: 'Display hero section on this page',
+            description: 'Hiển thị phần hero trên trang này',
           },
         },
         {
           name: 'title',
           type: 'text',
+          label: 'Tiêu đề',
           admin: {
-            description: 'Main heading in hero section',
+            description: 'Tiêu đề chính trong phần hero',
             condition: (data, siblingData) => siblingData?.showHero,
           },
         },
         {
           name: 'subtitle',
           type: 'text',
+          label: 'Tiêu đề phụ',
           admin: {
-            description: 'Subheading in hero section',
+            description: 'Tiêu đề phụ trong phần hero',
             condition: (data, siblingData) => siblingData?.showHero,
           },
         },
         {
           name: 'description',
           type: 'textarea',
+          label: 'Mô tả',
           admin: {
-            description: 'Hero description text',
+            description: 'Văn bản mô tả hero',
             condition: (data, siblingData) => siblingData?.showHero,
           },
         },
@@ -135,24 +146,27 @@ export const Pages: CollectionConfig = {
           name: 'image',
           type: 'upload',
           relationTo: 'media',
+          label: 'Ảnh nền',
           admin: {
-            description: 'Hero background image',
+            description: 'Ảnh nền hero',
             condition: (data, siblingData) => siblingData?.showHero,
           },
         },
         {
           name: 'buttonText',
           type: 'text',
+          label: 'Văn bản nút',
           admin: {
-            description: 'Call-to-action button text',
+            description: 'Văn bản nút kêu gọi hành động',
             condition: (data, siblingData) => siblingData?.showHero,
           },
         },
         {
           name: 'buttonLink',
           type: 'text',
+          label: 'Liên kết nút',
           admin: {
-            description: 'Call-to-action button URL',
+            description: 'URL nút kêu gọi hành động',
             condition: (data, siblingData) => siblingData?.showHero,
           },
         },
@@ -165,8 +179,9 @@ export const Pages: CollectionConfig = {
       type: 'relationship',
       relationTo: 'categories',
       hasMany: true,
+      label: 'Dòng sản phẩm nổi bật',
       admin: {
-        description: 'Select categories to display on this page',
+        description: 'Chọn dòng sản phẩm để hiển thị trên trang này',
       },
     },
 
@@ -174,8 +189,9 @@ export const Pages: CollectionConfig = {
     {
       name: 'content',
       type: 'richText',
+      label: 'Nội dung chính',
       admin: {
-        description: 'Main content (rich text)',
+        description: 'Nội dung chính (văn bản định dạng)',
       },
       editor: lexicalEditor(),
     },
@@ -184,34 +200,36 @@ export const Pages: CollectionConfig = {
     {
       name: 'sections',
       type: 'blocks',
-      label: 'Page Sections',
+      label: 'Các phần trang',
       admin: {
-        description: 'Add dynamic content sections to this page',
+        description: 'Thêm các phần nội dung động vào trang này',
       },
       blocks: [
         // Text Section Block
         {
           slug: 'textSection',
           labels: {
-            singular: 'Text Section',
-            plural: 'Text Sections',
+            singular: 'Phần văn bản',
+            plural: 'Các phần văn bản',
           },
           fields: [
-            { name: 'heading', type: 'text', required: true },
+            { name: 'heading', type: 'text', required: true, label: 'Tiêu đề' },
             {
               name: 'content',
               type: 'richText',
               required: true,
+              label: 'Nội dung',
               editor: lexicalEditor(),
             },
             {
               name: 'backgroundColor',
               type: 'select',
               defaultValue: 'white',
+              label: 'Màu nền',
               options: [
-                { label: 'White', value: 'white' },
-                { label: 'Light Gray', value: 'gray' },
-                { label: 'Dark', value: 'dark' },
+                { label: 'Trắng', value: 'white' },
+                { label: 'Xám nhạt', value: 'gray' },
+                { label: 'Tối', value: 'dark' },
               ],
             },
           ],
@@ -220,34 +238,37 @@ export const Pages: CollectionConfig = {
         {
           slug: 'imageGallery',
           labels: {
-            singular: 'Image Gallery',
-            plural: 'Image Galleries',
+            singular: 'Thư viện ảnh',
+            plural: 'Thư viện ảnh',
           },
           fields: [
-            { name: 'heading', type: 'text' },
+            { name: 'heading', type: 'text', label: 'Tiêu đề' },
             {
               name: 'images',
               type: 'array',
               required: true,
               minRows: 1,
+              label: 'Hình ảnh',
               fields: [
                 {
                   name: 'image',
                   type: 'upload',
                   relationTo: 'media',
                   required: true,
+                  label: 'Ảnh',
                 },
-                { name: 'caption', type: 'text' },
+                { name: 'caption', type: 'text', label: 'Chú thích' },
               ],
             },
             {
               name: 'columns',
               type: 'select',
               defaultValue: '3',
+              label: 'Số cột',
               options: [
-                { label: '2 Columns', value: '2' },
-                { label: '3 Columns', value: '3' },
-                { label: '4 Columns', value: '4' },
+                { label: '2 cột', value: '2' },
+                { label: '3 cột', value: '3' },
+                { label: '4 cột', value: '4' },
               ],
             },
           ],
@@ -256,42 +277,44 @@ export const Pages: CollectionConfig = {
         {
           slug: 'videoSection',
           labels: {
-            singular: 'Video Section',
-            plural: 'Video Sections',
+            singular: 'Phần video',
+            plural: 'Các phần video',
           },
           fields: [
-            { name: 'heading', type: 'text' },
+            { name: 'heading', type: 'text', label: 'Tiêu đề' },
             {
               name: 'videoUrl',
               type: 'text',
               required: true,
+              label: 'URL video',
               admin: {
-                description: 'YouTube or Vimeo URL',
+                description: 'URL YouTube hoặc Vimeo',
               },
             },
-            { name: 'description', type: 'textarea' },
+            { name: 'description', type: 'textarea', label: 'Mô tả' },
           ],
         },
         // Call to Action Block
         {
           slug: 'ctaSection',
           labels: {
-            singular: 'Call to Action',
-            plural: 'Call to Actions',
+            singular: 'Kêu gọi hành động',
+            plural: 'Kêu gọi hành động',
           },
           fields: [
-            { name: 'heading', type: 'text', required: true },
-            { name: 'description', type: 'textarea' },
-            { name: 'buttonText', type: 'text', required: true },
-            { name: 'buttonLink', type: 'text', required: true },
+            { name: 'heading', type: 'text', required: true, label: 'Tiêu đề' },
+            { name: 'description', type: 'textarea', label: 'Mô tả' },
+            { name: 'buttonText', type: 'text', required: true, label: 'Văn bản nút' },
+            { name: 'buttonLink', type: 'text', required: true, label: 'Liên kết nút' },
             {
               name: 'backgroundColor',
               type: 'select',
               defaultValue: 'primary',
+              label: 'Màu nền',
               options: [
-                { label: 'Primary Color', value: 'primary' },
-                { label: 'Secondary Color', value: 'secondary' },
-                { label: 'Dark', value: 'dark' },
+                { label: 'Màu chính', value: 'primary' },
+                { label: 'Màu phụ', value: 'secondary' },
+                { label: 'Tối', value: 'dark' },
               ],
             },
           ],
@@ -300,29 +323,31 @@ export const Pages: CollectionConfig = {
         {
           slug: 'productsSection',
           labels: {
-            singular: 'Products Section',
-            plural: 'Products Sections',
+            singular: 'Phần sản phẩm',
+            plural: 'Các phần sản phẩm',
           },
           fields: [
-            { name: 'heading', type: 'text', required: true },
-            { name: 'description', type: 'textarea' },
+            { name: 'heading', type: 'text', required: true, label: 'Tiêu đề' },
+            { name: 'description', type: 'textarea', label: 'Mô tả' },
             {
               name: 'products',
               type: 'relationship',
               relationTo: 'products',
               hasMany: true,
+              label: 'Sản phẩm',
               admin: {
-                description: 'Select products to display',
+                description: 'Chọn sản phẩm để hiển thị',
               },
             },
             {
               name: 'displayStyle',
               type: 'select',
               defaultValue: 'grid',
+              label: 'Kiểu hiển thị',
               options: [
-                { label: 'Grid', value: 'grid' },
-                { label: 'Carousel', value: 'carousel' },
-                { label: 'List', value: 'list' },
+                { label: 'Lưới', value: 'grid' },
+                { label: 'Băng chuyền', value: 'carousel' },
+                { label: 'Danh sách', value: 'list' },
               ],
             },
           ],
@@ -331,22 +356,24 @@ export const Pages: CollectionConfig = {
         {
           slug: 'customHTML',
           labels: {
-            singular: 'Custom HTML',
-            plural: 'Custom HTML Blocks',
+            singular: 'HTML tùy chỉnh',
+            plural: 'Các khối HTML tùy chỉnh',
           },
           fields: [
             {
               name: 'label',
               type: 'text',
               required: true,
-              admin: { description: 'Internal label for this block' },
+              label: 'Nhãn',
+              admin: { description: 'Nhãn nội bộ cho khối này' },
             },
             {
               name: 'html',
               type: 'textarea',
               required: true,
+              label: 'Mã HTML',
               admin: {
-                description: 'Custom HTML code',
+                description: 'Mã HTML tùy chỉnh',
               },
             },
           ],
@@ -355,8 +382,8 @@ export const Pages: CollectionConfig = {
     },
 
     // Publishing Options
-    { name: 'published', type: 'checkbox', defaultValue: true },
-    { name: 'publishedAt', type: 'date', admin: { position: 'sidebar' } },
+    { name: 'published', type: 'checkbox', defaultValue: true, label: 'Đã xuất bản' },
+    { name: 'publishedAt', type: 'date', admin: { position: 'sidebar' }, label: 'Ngày xuất bản' },
   ],
   timestamps: true,
 }

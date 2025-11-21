@@ -26,17 +26,20 @@ export const Users: CollectionConfig = {
       name: 'name',
       type: 'text',
       required: true,
+      label: 'Họ và tên',
     },
     {
       name: 'role',
       type: 'select',
       defaultValue: 'admin',
+      label: 'Vai trò',
       options: [
-        { label: 'Admin', value: 'admin' },
-        { label: 'Editor', value: 'editor' },
+        { label: 'Quản trị viên', value: 'admin' },
+        { label: 'Biên tập viên', value: 'editor' },
       ],
       admin: {
-        description: 'Admin: full access. Editor: can manage data but cannot manage users.',
+        description:
+          'Quản trị viên: toàn quyền. Biên tập viên: quản lý nội dung nhưng không quản lý người dùng.',
       },
     },
   ],
