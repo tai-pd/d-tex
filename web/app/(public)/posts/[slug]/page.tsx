@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Breadcrumb from '@/app/components/layout/Breadcrumb';
-import PostContent from '@/app/components/posts/PostContent';
 
 interface PostPageProps {
   params: Promise<{
@@ -31,16 +30,21 @@ export default async function PostPage({ params }: PostPageProps) {
         items={[
           { label: 'Trang chủ', href: '/' },
           { label: 'Tin tức', href: '/posts' },
-          { label: 'Post Title', href: `/posts/${slug}` },
+          { label: 'Bài viết', href: `/posts/${slug}` },
         ]}
       />
 
       <article className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4">Post Title</h1>
+        <h1 className="text-4xl font-bold mb-4">Bài viết: {slug}</h1>
         <div className="text-gray-600 mb-8">
-          Published on: {new Date().toLocaleDateString('vi-VN')}
+          Ngày đăng: {new Date().toLocaleDateString('vi-VN')}
         </div>
-        <PostContent content={null} />
+        
+        <div className="prose prose-lg max-w-none">
+          <p className="text-gray-600">
+            Nội dung bài viết sẽ được hiển thị ở đây sau khi kết nối với API.
+          </p>
+        </div>
       </article>
     </div>
   );

@@ -16,12 +16,22 @@ export function formatCurrency(amount: number): string {
  * Format date to Vietnamese locale
  */
 export function formatDate(date: Date | string): string {
-  const dateObj = typeof date === 'string' ? new Date(date) : date;
-  return new Intl.DateTimeFormat('vi-VN', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(dateObj);
+  try {
+    const dateObj = typeof date === 'string' ? new Date(date) : date;
+    
+    // Check if date is valid
+    if (isNaN(dateObj.getTime())) {
+      return 'Ngày không hợp lệ';
+    }
+    
+    return new Intl.DateTimeFormat('vi-VN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }).format(dateObj);
+  } catch (error) {
+    return 'Ngày không hợp lệ';
+  }
 }
 
 /**
